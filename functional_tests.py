@@ -26,11 +26,11 @@ class NewVisitorTest(unittest.TestCase):
 		# geocaches in the area.
 		listings = self.browser.find_elements_by_tag_name('h2')
 		self.assertTrue(
-			any( listing.text == 'First Geocache Lising' 
+			any( listing.text == 'First Geocache Listing' 
 				for listing in listings)
 		)
 		self.assertTrue(
-			any( listing.text == 'Second Geocache Lising' 
+			any( listing.text == 'Second Geocache Listing' 
 				for listing in listings)
 		)
 	
