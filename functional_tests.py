@@ -19,9 +19,21 @@ class NewVisitorTest(unittest.TestCase):
 
 		# He notices the page title and header mention VT Caching
 		self.assertIn('VT Caching', self.browser.title)
-		
+		header_text = self.browser.find_element_by_tag_name('h1').text
+		self.assertIn('VT Caching', header_text)
+
 		# He then is able to view listings for several different
 		# geocaches in the area.
+		listings = self.browser.find_elements_by_tag_name('h2')
+		self.assertTrue(
+			any( listing.text == 'First Geocache Lising' 
+				for listing in listings)
+		)
+		self.assertTrue(
+			any( listing.text == 'Second Geocache Lising' 
+				for listing in listings)
+		)
+	
 
 		# When he clicks on one of the listings, it shows all the
 		# important information for that particular cache - which
