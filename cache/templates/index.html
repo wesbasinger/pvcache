@@ -4,9 +4,8 @@
 	</head>
 	<body>
 		<h1>VT Caching</h1>
-
-		<h2>First Geocache Listing</h2>
-		<h2>Second Geocache Listing</h2>
-		
+		{% for listing in listings %}
+			<h2>{{ listing.title }}</h2>
+		{% endfor %}
 	</body>
 </html>
