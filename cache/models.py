@@ -1,3 +1,4 @@
 from django.db import models
 
-# Create your models here.
+class Geocache(models.Model):
+	title = models.TextField(default="None Provided")
