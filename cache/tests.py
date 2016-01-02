@@ -17,7 +17,13 @@ class IndexTest(TestCase):
 		response = index(request)
 		expected_html = render_to_string('index.html')
 		self.assertEqual(response.content.decode(), expected_html)
+class ListingTest(TestCase):
 
+	def test_listing_returns_correct_html(self):
+		cache = Geocache.objects.create()
+		request = HttpRequest()
+		response = listing(request, cache.id)
+		self.assertIsNotNone(response.content.decode())
 
 class GeocacheModeltest(TestCase):
 
