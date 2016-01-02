@@ -1,7 +1,11 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from .models import Geocache
 
 def index(request):
 	listings = Geocache.objects.all()
-	return render(request, 'index.html', {'listings' : listings}) 
+	return render(request, 'index.html', {'listings' : listings})
+
+def listing(request, geocache_id):
+	listing = get_object_or_404(Geocache, pk=geocache_id)
+	return HttpResponse(listing)
