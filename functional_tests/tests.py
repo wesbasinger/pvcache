@@ -32,8 +32,8 @@ class NewVisitorTest(LiveServerTestCase):
 		self.assertIn('VT Caching', header_text)
 		
 		# He then is able to view listings for several different
-		# geocaches in the area.
-		listings = self.browser.find_elements_by_tag_name('h2')
+		# geocaches in the area.  All listing are hyperlinks
+		listings = self.browser.find_elements_by_tag_name('a')
 		self.assertTrue(
 			any( listing.text == 'First Geocache Listing' 
 				for listing in listings)
@@ -48,6 +48,9 @@ class NewVisitorTest(LiveServerTestCase):
 		# important information for that particular cache - which
 		# includes a title, a description, latitude, 
 		# longitude, and user logs.
+		
+		current_listing_url = self.browser.current_url
+		self.assertRegex(current_listing_url, '/listing/.+')
 
 		# He is also given the option to download the information
 		# in a GPX file that can be imported to his device.
