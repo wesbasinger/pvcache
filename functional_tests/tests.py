@@ -42,7 +42,7 @@ class NewVisitorTest(LiveServerTestCase):
 			any( listing.text == 'Second Geocache Listing' 
 				for listing in listings)
 		)
-	def test_can_click_and_redirect_to_detail_view(self):
+	def test_can_click_and_view_listing_detail(self):
 
 		self.browser.get(self.live_server_url)
 		# When he clicks on one of the listings, it shows all the
@@ -52,6 +52,12 @@ class NewVisitorTest(LiveServerTestCase):
 		first_listing = self.browser.find_element_by_id('first').click()
 		current_listing_url = self.browser.current_url
 		self.assertRegex(current_listing_url, '/listing/.+')
+		
+		self.browser.find_element_by_id('title')
+		self.browser.find_element_by_id('description')
+		self.browser.find_element_by_id('latitude')
+		self.browser.find_element_by_id('longitude')
+		self.browser.find_element_by_id('user-logs')
 
 		# He is also given the option to download the information
 		# in a GPX file that can be imported to his device.

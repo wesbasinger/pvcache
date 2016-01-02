@@ -8,4 +8,4 @@ def index(request):
 
 def listing(request, geocache_id):
 	listing = get_object_or_404(Geocache, pk=geocache_id)
-	return HttpResponse(listing)
+	return render(request, 'listing.html', {'listing': listing})
