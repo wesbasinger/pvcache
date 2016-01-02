@@ -23,10 +23,12 @@ class GeocacheModeltest(TestCase):
 	def test_saving_and_retrieving_items(self):
 		first_listing = Geocache()
 		first_listing.title = "First Geocache Listing"
+		first_listing.description = "First geocache description."
 		first_listing.save()
 
 		second_listing = Geocache()
 		second_listing.title = "Second Geocache Listing"
+		second_listing.description = "Second geocache description."
 		second_listing.save()
 
 		saved_listings = Geocache.objects.all()
@@ -35,6 +37,8 @@ class GeocacheModeltest(TestCase):
 		first_saved_listing = saved_listings[0]
 		second_saved_listing = saved_listings[1]
 		self.assertEqual(first_saved_listing.title, "First Geocache Listing")
+		self.assertEqual(first_saved_listing.description, "First geocache description.")
 		self.assertEqual(second_saved_listing.title, "Second Geocache Listing")
+		self.assertEqual(second_saved_listing.description, "Second geocache description.")
 
 	
