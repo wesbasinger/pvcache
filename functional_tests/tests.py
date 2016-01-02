@@ -42,13 +42,14 @@ class NewVisitorTest(LiveServerTestCase):
 			any( listing.text == 'Second Geocache Listing' 
 				for listing in listings)
 		)
-	
+	def test_can_click_and_redirect_to_detail_view(self):
 
+		self.browser.get(self.live_server_url)
 		# When he clicks on one of the listings, it shows all the
 		# important information for that particular cache - which
 		# includes a title, a description, latitude, 
 		# longitude, and user logs.
-		
+		first_listing = self.browser.find_element_by_id('first').click()
 		current_listing_url = self.browser.current_url
 		self.assertRegex(current_listing_url, '/listing/.+')
 
