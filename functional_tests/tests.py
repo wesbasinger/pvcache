@@ -1,5 +1,6 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 from cache.models import Geocache
 
@@ -86,7 +87,7 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
 		
 		log_entry = self.browser.find_element_by_id('id_new_log-output')
-		self.assertIn('New log', log_entry)
+		self.assertEqual('New log', log_entry.text)
 
 		# After he submits the log entry, the page 
 		# refreshes and he is
