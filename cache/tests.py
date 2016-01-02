@@ -41,4 +41,24 @@ class GeocacheModeltest(TestCase):
 		self.assertEqual(second_saved_listing.title, "Second Geocache Listing")
 		self.assertEqual(second_saved_listing.description, "Second geocache description.")
 
-	
+	def test_saving_and_retrieving_positive_and_negative_coordinates(self):
+		first_listing = Geocache()
+		first_listing.latitude = 10.000001
+		first_listing.longitude = -10.000001
+		first_listing.save()
+
+		second_listing = Geocache()
+		second_listing.latitude = 20.100000
+		second_listing.longitude = -20.100000
+		second_listing.save()
+
+		saved_listings = Geocache.objects.all()
+		self.assertEqual(saved_listings.count(), 2)
+
+		first_saved_listing = saved_listings[0]
+		second_saved_listing = saved_listings[1]
+		self.assertEqual(first_saved_listing.latitude, 10.000001)
+		self.assertEqual(first_saved_listing.longitude, -10.000001)
+		self.assertEqual(second_saved_listing.latitude, 20.100000)
+		self.assertEqual(second_saved_listing.longitude, -20.100000)
+
