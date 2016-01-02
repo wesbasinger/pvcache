@@ -67,8 +67,26 @@ class NewVisitorTest(LiveServerTestCase):
 		# He is also given the option to download the information
 		# in a GPX file that can be imported to his device.
 
+	def test_can_add_a_log_to_a_listing_and_view_later(self):
+
 		# Once he finds the geocache, he is able to 
 		# create a log entry.
+		self.browser.get('http://localhost:8000/listing/3')
+		inputbox = self.browser.find_element_by_id('id_new_log-input')
+		self.assertEqual(
+			inputbox.get_attribute('placeholder'),
+			'Enter a new log'
+		)
+
+		# He types "New log" into a text box
+		inputbox.send_keys('New log')
+
+		# When he hits enter, the page updates, and now
+		# it lists 'New log' as an item
+		inputbox.send_keys(Keys.ENTER)
+		
+		log_entry = self.browser.find_element_by_id('id_new_log-output')
+		self.assertIn('New log', log_entry)
 
 		# After he submits the log entry, the page 
 		# refreshes and he is
