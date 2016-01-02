@@ -8,7 +8,12 @@ class NewVisitorTest(LiveServerTestCase):
 	def setUp(self):
 
 		# bit of a hack, prepopulating the database
-		first_listing = Geocache(title="First Geocache Listing")
+		first_listing = Geocache(
+			title="First Geocache Listing",
+			description="Test description",
+			latitude=00.000000,
+			longitude=00.000000,
+			)
 		first_listing.save()
 		second_listing = Geocache(title="Second Geocache Listing")
 		second_listing.save()
