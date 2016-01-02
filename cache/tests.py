@@ -4,7 +4,7 @@ from django.http import HttpRequest
 from django.template.loader import render_to_string
 
 from cache.models import Geocache
-from cache.views import index
+from cache.views import index, listing
 
 class IndexTest(TestCase):
 
@@ -17,6 +17,7 @@ class IndexTest(TestCase):
 		response = index(request)
 		expected_html = render_to_string('index.html')
 		self.assertEqual(response.content.decode(), expected_html)
+
 
 class GeocacheModeltest(TestCase):
 
