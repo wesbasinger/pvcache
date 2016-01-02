@@ -1,9 +1,18 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
-import unittest
 
-class NewVisitorTest(unittest.TestCase):
+from cache.models import Geocache
+
+class NewVisitorTest(LiveServerTestCase):
 
 	def setUp(self):
+
+		# bit of a hack, prepopulating the database
+		first_listing = Geocache(title="First Geocache Listing")
+		first_listing.save()
+		second_listing = Geocache(title="Second Geocache Listing")
+		second_listing.save()
+
 		self.browser = webdriver.Firefox()
 		self.browser.implicitly_wait(3)
 
@@ -15,13 +24,13 @@ class NewVisitorTest(unittest.TestCase):
 		# Cody has heard about a cool new online private 
 		# geocaching app.
 		# He goes to check out its homepage
-		self.browser.get('http://localhost:8000')
+		self.browser.get(self.live_server_url)
 
 		# He notices the page title and header mention VT Caching
 		self.assertIn('VT Caching', self.browser.title)
 		header_text = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('VT Caching', header_text)
-
+		
 		# He then is able to view listings for several different
 		# geocaches in the area.
 		listings = self.browser.find_elements_by_tag_name('h2')
@@ -52,6 +61,3 @@ class NewVisitorTest(unittest.TestCase):
 
 		# When Cody logs in as an admin user, he is able to add
 		# geocaches of his own. 
-
-if __name__ == '__main__':
-	unittest.main(warnings='ignore')
