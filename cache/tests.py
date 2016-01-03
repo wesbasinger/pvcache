@@ -3,7 +3,7 @@ from django.core.urlresolvers import resolve
 from django.http import HttpRequest
 from django.template.loader import render_to_string
 
-from cache.models import Geocache
+from cache.models import Geocache, Log
 from cache.views import index, listing
 
 class IndexTest(TestCase):
@@ -90,11 +90,11 @@ class LogModeltest(TestCase):
 	def test_saving_and_retrieving_logs(self):
 		first_log = Log()
 		first_log.text = "First log"
-		first_listing.save()
+		first_log.save()
 
 		second_log = Log()
 		second_log.text = "Second log"
-		second_listing.save()
+		second_log.save()
 
 		saved_logs = Log.objects.all()
 		self.assertEqual(saved_logs.count(), 2)
