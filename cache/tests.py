@@ -23,7 +23,27 @@ class ListingTest(TestCase):
 		cache = Geocache.objects.create()
 		request = HttpRequest()
 		response = listing(request, cache.id)
+		expected_html = render_to_string(
+			'listing.html',
+			{'listing': listing}
+		)
 		self.assertIsNotNone(response.content.decode())
+
+	def test_listing_page_can_save_a_POST_request(self):
+		cache = Geocache.objects.create()
+		cache.save()
+		request = HttpRequest()
+		request.method = 'POST'
+		request.POST['log_text'] = 'A new log'
+
+		response = listing(request, cache.id)
+
+		self.assertIn('A new log', response.content.decode())
+		expected_html = render_to_string(
+			'listing.html',
+			{'log_text': 'A new log'}
+		)
+		self.assertEqual(response.content.decode(), expected_html)
 
 class GeocacheModeltest(TestCase):
 
