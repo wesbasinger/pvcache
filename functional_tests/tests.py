@@ -63,7 +63,10 @@ class NewVisitorTest(LiveServerTestCase):
 		self.browser.find_element_by_id('description')
 		self.browser.find_element_by_id('latitude')
 		self.browser.find_element_by_id('longitude')
-		self.browser.find_element_by_id('user-logs')
+
+		# The page lists all of the previous logs by other people
+		# that have found the cache.
+		self.browser.find_elements_by_tag_name('li')
 
 		# He is also given the option to download the information
 		# in a GPX file that can be imported to his device.
@@ -92,6 +95,6 @@ class NewVisitorTest(LiveServerTestCase):
 		# After he submits the log entry, the page 
 		# refreshes and he is
 		# able to see that his entry is the latest.
-
+		
 		# When Cody logs in as an admin user, he is able to add
 		# geocaches of his own. 

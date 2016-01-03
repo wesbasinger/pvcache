@@ -8,4 +8,8 @@ def index(request):
 
 def listing(request, geocache_id):
 	listing = get_object_or_404(Geocache, pk=geocache_id)
-	return render(request, 'listing.html', {'listing': listing, 'log_text': request.POST.get('log_text', ''),})
+	logs = listing.log_set.all()
+	return render(request, 'listing.html', {
+		'listing': listing, 
+		'log_text': request.POST.get('log_text', ''),
+		'logs': logs})

@@ -17,6 +17,11 @@
 				{% csrf_token %}
 			</form>
 			<p id="id_new_log-output">{{ log_text }}</p>
+			<ul>
+				{% for log in logs %}
+					<li>{{ log.text }}</li>
+				{% endfor %}
+			</ul>
 		</div>
 	</body>
 </html>

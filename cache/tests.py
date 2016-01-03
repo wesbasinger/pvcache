@@ -17,6 +17,8 @@ class IndexTest(TestCase):
 		response = index(request)
 		expected_html = render_to_string('index.html')
 		self.assertEqual(response.content.decode(), expected_html)
+
+
 class ListingTest(TestCase):
 
 	def test_listing_returns_correct_html(self):
@@ -40,6 +42,22 @@ class ListingTest(TestCase):
 
 		self.assertIn('A new log', response.content.decode())
 		self.assertIsNotNone(response.content.decode())
+
+	def test_all_previous_logs_are_shown(self):
+		g = Geocache()
+		g.save()
+		first_log = Log(id=None, text="Test for first log", geocache=g)
+		first_log.save()
+		second_log = Log(id=None, text="Test for second log", geocache=g)
+		second_log.save()
+		request = HttpRequest()
+		
+		response = listing(request, g.id)
+
+		self.assertIn("Test for first log", response.content.decode())
+		self.assertIn("Test for second log", response.content.decode())
+		
+		
 
 class GeocacheModeltest(TestCase):
 
