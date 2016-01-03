@@ -87,20 +87,13 @@ class GeocacheModeltest(TestCase):
 
 class LogModeltest(TestCase):
 
-	def test_saving_and_retrieving_logs(self):
-		first_log = Log()
-		first_log.text = "First log"
-		first_log.save()
-
-		second_log = Log()
-		second_log.text = "Second log"
-		second_log.save()
-
+	def test_geocache_and_log_relationship(self):
+		g = Geocache()
+		g.save()
+		log = Log(id=None, text="test text", geocache=g)
+		log.save()
+		self.assertEqual(log.text, "test text")
+		log2 = Log(id=None, text="test text", geocache=g)
+		log2.save()
 		saved_logs = Log.objects.all()
 		self.assertEqual(saved_logs.count(), 2)
-
-		first_saved_log = saved_logs[0]
-		second_saved_log = saved_logs[1]
-		self.assertEqual(first_saved_log.text, "First log")
-		self.assertEqual(second_saved_log.text, "Second log")
-
