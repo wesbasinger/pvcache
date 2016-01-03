@@ -39,11 +39,7 @@ class ListingTest(TestCase):
 		response = listing(request, cache.id)
 
 		self.assertIn('A new log', response.content.decode())
-		expected_html = render_to_string(
-			'listing.html',
-			{'log_text': 'A new log'}
-		)
-		self.assertEqual(response.content.decode(), expected_html)
+		self.assertIsNotNone(response.content.decode())
 
 class GeocacheModeltest(TestCase):
 
@@ -88,4 +84,23 @@ class GeocacheModeltest(TestCase):
 		self.assertEqual(first_saved_listing.longitude, -10.000001)
 		self.assertEqual(second_saved_listing.latitude, 20.100000)
 		self.assertEqual(second_saved_listing.longitude, -20.100000)
+
+class LogModeltest(TestCase):
+
+	def test_saving_and_retrieving_logs(self):
+		first_log = Log()
+		first_log.text = "First log"
+		first_listing.save()
+
+		second_log = Log()
+		second_log.text = "Second log"
+		second_listing.save()
+
+		saved_logs = Log.objects.all()
+		self.assertEqual(saved_logs.count(), 2)
+
+		first_saved_log = saved_logs[0]
+		second_saved_log = saved_logs[1]
+		self.assertEqual(first_saved_log.text, "First log")
+		self.assertEqual(second_saved_log.text, "Second log")
 
