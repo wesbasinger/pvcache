@@ -103,6 +103,12 @@ class GeocacheModeltest(TestCase):
 		self.assertEqual(second_saved_listing.latitude, 20.100000)
 		self.assertEqual(second_saved_listing.longitude, -20.100000)
 
+	def test_can_covert_decimal_coordinates_to_DMS(self):
+		g = Geocache(latitude=32.603020, longitude=96.863314)
+		self.assertEqual(
+			g.dms(), "N 32 36' 10.872\" W 96 51' 47.93\""
+		)
+
 class LogModeltest(TestCase):
 
 	def test_geocache_and_log_relationship(self):
