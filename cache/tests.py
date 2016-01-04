@@ -34,14 +34,18 @@ class ListingTest(TestCase):
 	def test_listing_page_can_save_a_POST_request(self):
 		cache = Geocache.objects.create()
 		cache.save()
+		old_log = Log(text='An old log', geocache=cache)
+		old_log.save()
 		request = HttpRequest()
 		request.method = 'POST'
 		request.POST['log_text'] = 'A new log'
 
 		response = listing(request, cache.id)
+		
+		self.assertEqual(Log.objects.count(), 2)
 
 		self.assertIn('A new log', response.content.decode())
-		self.assertIsNotNone(response.content.decode())
+		self.assertIn('An old log', response.content.decode())
 
 	def test_all_previous_logs_are_shown(self):
 		g = Geocache()

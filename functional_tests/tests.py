@@ -2,7 +2,7 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-from cache.models import Geocache
+from cache.models import Geocache, Log
 
 class NewVisitorTest(LiveServerTestCase):
 
@@ -93,7 +93,7 @@ class NewVisitorTest(LiveServerTestCase):
 		# able to see that his entry is displayed.
 		log_entries = self.browser.find_elements_by_tag_name('li')
 		self.assertTrue(
-			any( log.text == 'New log' for log_entry in log_entries)
+			any( log_entry.text == 'New log' for log_entry in log_entries)
 		)
 			
 		
