@@ -85,16 +85,17 @@ class NewVisitorTest(LiveServerTestCase):
 		# He types "New log" into a text box
 		inputbox.send_keys('New log')
 
-		# When he hits enter, the page updates, and now
-		# it lists 'New log' as an item
+		# He types enter
 		inputbox.send_keys(Keys.ENTER)
 		
-		log_entry = self.browser.find_element_by_id('id_new_log-output')
-		self.assertEqual('New log', log_entry.text)
-
 		# After he submits the log entry, the page 
 		# refreshes and he is
-		# able to see that his entry is the latest.
+		# able to see that his entry is displayed.
+		log_entries = self.browser.find_elements_by_tag_name('li')
+		self.assertTrue(
+			any( log.text == 'New log' for log_entry in log_entries)
+		)
+			
 		
 		# When Cody logs in as an admin user, he is able to add
 		# geocaches of his own. 
