@@ -113,6 +113,23 @@ class GeocacheModeltest(TestCase):
 			g.dms(), "N 32 36' 10.872\" W 96 51' 47.93\""
 		)
 
+	def test_saving_and_retrieving_hint(self):
+		first_listing = Geocache()
+		first_listing.hint = "Hint for cache"
+		first_listing.save()
+
+		second_listing = Geocache()
+		second_listing.hint = "Hint for cache"
+		second_listing.save()
+
+		saved_listings = Geocache.objects.all()
+		self.assertEqual(saved_listings.count(), 2)
+
+		first_saved_listing = saved_listings[0]
+		second_saved_listing = saved_listings[1]
+		self.assertEqual(first_saved_listing.hint, "Hint for cache")
+		self.assertEqual(second_saved_listing.hint, "Hint for cache")
+
 class LogModeltest(TestCase):
 
 	def test_geocache_and_log_relationship(self):

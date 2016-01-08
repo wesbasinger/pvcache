@@ -5,6 +5,7 @@ class Geocache(models.Model):
 	description = models.TextField(default="None provided.")
 	latitude = models.FloatField(default=00.000000)
 	longitude = models.FloatField(default=00.000000)
+	hint = models.TextField(default="None provided.")
 	
 	def dms(self):
 		d_lat = int(self.latitude)
