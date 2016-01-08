@@ -1,3 +1,5 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 from django.db import models
 
 class Geocache(models.Model):
@@ -6,6 +8,9 @@ class Geocache(models.Model):
 	latitude = models.FloatField(default=00.000000)
 	longitude = models.FloatField(default=00.000000)
 	hint = models.TextField(default="None provided.")
+	difficulty = models.PositiveIntegerField(default=1,
+		validators=
+		[MinValueValidator(1), MaxValueValidator(5)])
 	
 	def dms(self):
 		d_lat = int(self.latitude)

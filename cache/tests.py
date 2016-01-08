@@ -130,6 +130,17 @@ class GeocacheModeltest(TestCase):
 		self.assertEqual(first_saved_listing.hint, "Hint for cache")
 		self.assertEqual(second_saved_listing.hint, "Hint for cache")
 
+	def test_saving_and_retrieving_difficulty(self):
+		good_listing = Geocache()
+		good_listing.difficulty = 3
+		good_listing.save()
+
+		bad_listing = Geocache()
+		bad_listing.difficulty = 6
+		bad_listing.save()
+
+		saved_listings = Geocache.objects.all()
+		self.assertEqual(saved_listings[0].difficulty, 3)
 class LogModeltest(TestCase):
 
 	def test_geocache_and_log_relationship(self):
