@@ -1,11 +1,6 @@
-<html>
-	<head>
-		<title>VT Caching</title>
-	</head>
-	<body>
-		<h1>VT Caching</h1>
+	{% extends 'base.html' %}		
+		{% block content %}
 		{% for listing in listings %}
 			<a href="/listing/{{listing.id}}" id="first">{{ listing.title }}</a>
 		{% endfor %}
-	</body>
-</html>
+		{% endblock %}

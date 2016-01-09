@@ -1,8 +1,5 @@
-<html>
-	<head>
-		<title>VT Caching</title>
-	</head>
-	<body>
+	{% extends 'base.html' %}
+		{% block content %}
 		<h1 id="title">{{ listing.title }}</h1>
 		<h2 id="description">{{ listing.description }}</h2>
 		<h2 id="latitude">{{ listing.latitude }} </h2>
@@ -24,5 +21,4 @@
 				{% endfor %}
 			</ul>
 		</div>
-	</body>
-</html>
+		{% endblock %}
