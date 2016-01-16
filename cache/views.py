@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Geocache, Log
+from .forms import CacheForm
 
 def index(request):
 	listings = Geocache.objects.all()
@@ -22,3 +23,18 @@ def listing(request, geocache_id):
 	return render(request, 'listing.html', {
 			'listing': listing, 
 			'logs': logs})
+
+def new(request):
+	if request.method == "POST":
+		form = CacheForm(request.POST)
+		if form.is_valid():
+			geocache = form.save(commit=False)
+			geocache.save()
+			return HttpResponseRedirect('/')
+	else:
+		form = CacheForm()
+
+	return render(request, 'new.html', {'form': form})
+
+def about(request):
+	return render(request, 'about.html', {})

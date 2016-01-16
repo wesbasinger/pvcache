@@ -22,4 +22,6 @@ urlpatterns = [
     #url(r'^admin/', admin.site.urls),
 	url(r'^$', views.index, name="index"),
 	url(r'^listing/(?P<geocache_id>[0-9]+)$', views.listing, name="listing"),
+	url(r'new$', views.new, name="new"),
+	url(r'about$', views.about, name="about"),
 ]

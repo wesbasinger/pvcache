@@ -29,6 +29,9 @@ class Geocache(models.Model):
 	def __str__(self):
 		return self.title
 
+	def publish(self):
+		self.save()
+
 class Log(models.Model):
 	text = models.TextField(default="None Provided")
 	geocache = models.ForeignKey(Geocache, on_delete=models.CASCADE, default=None)
