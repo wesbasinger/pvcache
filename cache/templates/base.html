@@ -1,14 +1,23 @@
 {% load staticfiles %}
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			  content="width=device-width,
+					   initial-scale=1">
+		<link rel="stylesheet"
+			  href="/static/bootstrap/css/bootstrap.min.css">
+		<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 		<title>VT Caching</title>
 	</head>
 	<body>
 		<div class="page-header">
 			{% if user.is_authenticated %}
-			<p class="top-menu">Hello {{ user.username }}<small>
+			<p class="top-menu">Hello {{ user.username }}
+				<small>
 				<a href="/accounts/logout/">Logout</a>
+				</small>
 			</p>
 			{% else %}
 			<p class="top-menu">
@@ -26,9 +35,10 @@
 			<a href="/new">New</a>
 			{% endif %}
 		</nav>
+		<div class="container-fluid">
 		<h1>VT Caching</h1>
-		<p>small change in page</p>
 		{% block content %}
 		{% endblock %}
+		</div>
 	</body>
 </html>

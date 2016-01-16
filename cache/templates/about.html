@@ -1,24 +1,48 @@
 	{% extends 'base.html' %}
 		{% block content %}
-		<h1 id="title">{{ listing.title }}</h1>
-		<h2 id="description">{{ listing.description }}</h2>
-		<h2 id="latitude">{{ listing.latitude }} </h2>
-		<h2 id="longitude">{{ listing.longitude }}</h2>
-		<h3 id="dms">{{ listing.dms }}</h3>
-		<div id="user-logs">
-			<form method='POST'>
-				<input
-					name="log_text" 
-					id="id_new_log-input" 
-					placeholder="Enter a new log"
-				/>
-				{% csrf_token %}
-			</form>
-			<p id="id_new_log-output">{{ log_text }}</p>
-			<ul>
-				{% for log in logs %}
-					<li>{{ log.text }}</li>
-				{% endfor %}
-			</ul>
-		</div>
+		<h2>About Village Tech Geocaching</h2>
+			<h3>What is geocaching?</h3>
+				<p>Geocaching is a real-world, outdoor treasure 
+					hunting game using GPS-enabled devices. Participants 
+					navigate to a specific set of GPS coordinates and 
+					then attempt to find the geocache (container) 
+					hidden at that location.
+				</p>
+			<h3>How is the game played?</h3>
+				<p>At its simplest leve, geocaching requires these easy steps.</p>
+					<ol>
+						<li><a href="newuser.html">Create a username.</a></li>
+						<li>Go to the home page and find a set of coordinates</li>
+						<li>Find the cache using your GPS device.</li>
+						<li>Sign the physical logbook</li>
+						<li>Trade for items if you like.</li>
+						<li>Record your find on this website.</li>
+					</ol>
+				</p>
+			<h3>What are the rules of geocaching?</h3>
+				<ol>
+					<li>If you take something from the geocache 
+						(or "cache"), leave something of equal 
+						or greater value.</li>
+					<li>Write about your find in the cache logbook.</li>
+					<li>Log your experience online as well.</li>
+				</ol>
+			<h3>What do I need to go geocaching?</h3>
+				<p>The only necessities are a GPS device or a 
+					GPS-enabled mobile phone so that you can 
+					navigate to the cache.</p>
+			<h3>Where are geocaches located?</h3>
+				<p>Geocaches can be found all over the world. 
+				It is common for geocachers to hide caches in locations 
+				that are important to them, reflecting a special interest 
+				or skill of the cache owner. These locations can be quite 
+				diverse. They may be at your local park, at the end of a 
+				long hike, underwater or on the side of a city street.
+				</p>
+			<h3>Are there different types of geocaches?</h3>
+				<p>Yes. There are currently over a dozen "cache types" 
+					in geocaching, with each cache type being a 
+					different variation of the game.</p>
+		
+			
 		{% endblock %}

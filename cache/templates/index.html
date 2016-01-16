@@ -1,6 +1,14 @@
 	{% extends 'base.html' %}		
 		{% block content %}
+		<h2>Click on the links below to view listing details.</h2>
 		{% for listing in listings %}
-			<a href="/listing/{{listing.id}}" id="first">{{ listing.title }}</a>
+			<div class="row">
+			<div class="col-sm-4">
+			<h3>
+				<a href="/listing/{{listing.id}}" 
+					id="first">{{ listing.title }}</a>
+			</h3>
+			</div>
+			</div>
 		{% endfor %}
 		{% endblock %}

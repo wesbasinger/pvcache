@@ -1,10 +1,22 @@
 	{% extends 'base.html' %}
 		{% block content %}
-		<h1 id="title">{{ listing.title }}</h1>
-		<h2 id="description">{{ listing.description }}</h2>
-		<h2 id="latitude">{{ listing.latitude }} </h2>
-		<h2 id="longitude">{{ listing.longitude }}</h2>
-		<h3 id="dms">{{ listing.dms }}</h3>
+		<div class="row">
+			<div class="col-sm-4">
+				<h1 id="title">{{ listing.title }}</h1>
+			</div>
+			<div class="col-sm-4">
+				<h2 id="description">{{ listing.description }}</h2>
+			</div>
+			<div class="row">
+				<h2 id="latitude">Latitude: {{ listing.latitude }} </h2>
+			</div>
+			<div class="row">
+				<h2 id="longitude">Longitude: {{ listing.longitude }}</h2>
+			</div>
+			<div class="col-sm-4">
+				<h2 id="dms">DMS: {{ listing.dms }}</h2>
+			</div>
+		</div>
 		<div id="user-logs">
 			{% if user.is_authenticated %}
 			<form method='POST'>
@@ -13,15 +25,30 @@
 					id="id_new_log-input" 
 					placeholder="Enter a new log"
 				/>
+				<input type="submit" value="Submit">
 				{% csrf_token %}
 			</form>
 			{% endif %}
+			<table class="table table-hover">
+				<thead>
+				<tr>
+					<th>Logs</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<td>
 			<p id="id_new_log-output">{{ log_text }}</p>
-			<ul>
+					</td>
+					</tr>
 				{% for log in logs %}
-					<li>{{ log.text }}</li>
+					<tr>
+					<td>{{ log.text }}
 					<p>Posted by {{ log.author }}</p>
+					</td>
+					</tr>
 				{% endfor %}
-			</ul>
+			</tbody>
+			</table>
 		</div>
 		{% endblock %}
