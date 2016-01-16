@@ -5,6 +5,16 @@
 		<title>VT Caching</title>
 	</head>
 	<body>
+		<div class="page-header">
+			{% if user.is_authenticated %}
+			<p class="top-menu">Hello {{ user.username }}<small>
+				<a href="/accounts/logout/">Logout</a>
+			</p>
+			{% else %}
+			<p class="top-menu">Go ahead and <a href="/accounts/login/">Login</a>  
+			</p>
+			{% endif %}
+		</div>
 		<nav>
 			<a href="/">Home</a>
 			<a href="/about">About</a>
