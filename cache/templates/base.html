@@ -29,17 +29,11 @@
 			</p>
 			{% endif %}
 		</div>
-		<div class="btn-group">
-			<button type="button" class="btn btn-primary">
-			<a href="/">Home</a>
-			</button>
-			<button type="button" class="btn btn-primary">
-			<a href="/about">About</a>
-			</button>
+		<div class="btn-group btn-group-justified">
+			<a href="/" class="btn btn-primary">Home</a>
+			<a href="/about" class="btn btn-primary">About</a>
 			{% if user.is_authenticated %}
-			<button type="button" class="btn btn-primary">
-			<a href="/new">New</a>
-			</button>
+			<a href="/new" class="btn btn-primary">New</a>
 			{% endif %}
 		</div>
 		<div class="container-fluid">
