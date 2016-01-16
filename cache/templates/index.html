@@ -1,9 +1,11 @@
 	{% extends 'base.html' %}		
-		{% block content %}
+		{% block content %}	
+		<div class="jumbotron">
 		<h4>Click on the links below to view listing details.</h2>
+		</div>
 		{% for listing in listings %}
 			<div class="row">
-			<div class="col-sm-4">
+			<div class="col-sm-4" class="well">
 			<h3>
 				<a href="/listing/{{listing.id}}" 
 					id="first">{{ listing.title }}</a>

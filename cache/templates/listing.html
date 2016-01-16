@@ -1,5 +1,6 @@
 	{% extends 'base.html' %}
 		{% block content %}
+		<div class="jumbotron">
 		<div class="row">
 			<div class="col-sm-4">
 				<h2 id="title">{{ listing.title }}</h1>
@@ -16,6 +17,7 @@
 			<div class="col-sm-4">
 				<h4 id="dms">DMS: {{ listing.dms }}</h2>
 			</div>
+		</div>
 		</div>
 		<div id="user-logs">
 			{% if user.is_authenticated %}
