@@ -2,19 +2,19 @@
 		{% block content %}
 		<div class="row">
 			<div class="col-sm-4">
-				<h1 id="title">{{ listing.title }}</h1>
+				<h2 id="title">{{ listing.title }}</h1>
 			</div>
 			<div class="col-sm-4">
-				<h2 id="description">{{ listing.description }}</h2>
-			</div>
-			<div class="row">
-				<h2 id="latitude">Latitude: {{ listing.latitude }} </h2>
-			</div>
-			<div class="row">
-				<h2 id="longitude">Longitude: {{ listing.longitude }}</h2>
+				<h3 id="description">{{ listing.description }}</h2>
 			</div>
 			<div class="col-sm-4">
-				<h2 id="dms">DMS: {{ listing.dms }}</h2>
+				<h4 id="latitude">Latitude: {{ listing.latitude }} </h2>
+			</div>
+			<div class="col-sm-4">
+				<h4 id="longitude">Longitude: {{ listing.longitude }}</h2>
+			</div>
+			<div class="col-sm-4">
+				<h4 id="dms">DMS: {{ listing.dms }}</h2>
 			</div>
 		</div>
 		<div id="user-logs">
