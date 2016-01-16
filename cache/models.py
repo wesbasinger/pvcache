@@ -34,6 +34,7 @@ class Geocache(models.Model):
 class Log(models.Model):
 	text = models.TextField(default="None Provided")
 	geocache = models.ForeignKey(Geocache, on_delete=models.CASCADE, default=None)
+	author = models.CharField(max_length=128, default=None)
 
 	def __str__(self):
 		return self.text

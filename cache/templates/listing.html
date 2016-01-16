@@ -20,6 +20,7 @@
 			<ul>
 				{% for log in logs %}
 					<li>{{ log.text }}</li>
+					<p>Posted by {{ log.author }}</p>
 				{% endfor %}
 			</ul>
 		</div>
