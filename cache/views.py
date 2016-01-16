@@ -13,13 +13,13 @@ def listing(request, geocache_id):
 		new_log_text = request.POST['log_text']
 		new_entry = Log(text=new_log_text, geocache=listing)
 		new_entry.save()
-		logs = listing.log_set.all()
+		logs = listing.log_set.all().order_by('-id')
 		return render(request, 'listing.html', {
 			'listing': listing,
 			'logs': logs
 		})
 	listing = Geocache.objects.get(pk=geocache_id)
-	logs = listing.log_set.all()
+	logs = listing.log_set.all().order_by('-id')
 	return render(request, 'listing.html', {
 			'listing': listing, 
 			'logs': logs})
