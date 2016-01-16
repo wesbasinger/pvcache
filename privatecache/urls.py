@@ -15,13 +15,16 @@ Including another URLconf
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import url, include
-#from django.contrib import admin
+from django.contrib import admin 
 from cache import views
+admin.autodiscover()
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
 	url(r'^$', views.index, name="index"),
 	url(r'^listing/(?P<geocache_id>[0-9]+)$', views.listing, name="listing"),
-	url(r'new$', views.new, name="new"),
-	url(r'about$', views.about, name="about"),
+	url(r'^new$', views.new, name="new"),
+	url(r'^about$', views.about, name="about"),
+	url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 ]

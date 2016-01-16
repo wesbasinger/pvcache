@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+
 from .models import Geocache, Log
 from .forms import CacheForm
 
@@ -24,6 +26,7 @@ def listing(request, geocache_id):
 			'listing': listing, 
 			'logs': logs})
 
+@login_required
 def new(request):
 	if request.method == "POST":
 		form = CacheForm(request.POST)
