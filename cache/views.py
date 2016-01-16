@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from .models import Geocache, Log
-from .forms import CacheForm
+from .forms import CacheForm, NewUserForm
 
 def index(request):
 	listings = Geocache.objects.all()
@@ -38,6 +38,19 @@ def new(request):
 		form = CacheForm()
 
 	return render(request, 'new.html', {'form': form})
+
+def newuser(request):
+	if request.method == "POST":
+		form =NewUserForm(request.POST)
+		if form.is_valid():
+			new_user = form.save(commit=False)
+			new_user.save()
+			return HttpResponseRedirect('/')
+	else:
+		form = NewUserForm()
+
+	return render(request, 'newuser.html', {'form': form})
+
 
 def about(request):
 	return render(request, 'about.html', {})

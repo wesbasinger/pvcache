@@ -27,4 +27,5 @@ urlpatterns = [
 	url(r'^about$', views.about, name="about"),
 	url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
 	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+	url(r'^newuser$', views.newuser, name="newuser"),
 ]
