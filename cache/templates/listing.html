@@ -17,6 +17,14 @@
 			<div class="col-sm-4">
 				<h4 id="dms">DMS: {{ listing.dms }}</h2>
 			</div>
+			<div class ="col-sm-4">
+				<button type="button" class="btn btn-info"
+				data-toggle="collapse" data-target="#demo">See hint</button>
+				<div id="demo" class="collapse">
+				{{ listing.hint }}
+				</div>
+				</div>
+			</div>
 		</div>
 		</div>
 		<div id="user-logs">
