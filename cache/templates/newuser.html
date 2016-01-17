@@ -2,7 +2,6 @@
 		{% block content %}
 		<form action='/newuser' method="post">
 			{% csrf_token %}
-			<input name="username" placeholder="Username" />
-			<input type="password" name="password" />
-			<input type="submit" value="Submit" />
+			{{ form.as_p }}	
+			<input type="submit" value="submit"/>
 		{% endblock %}
