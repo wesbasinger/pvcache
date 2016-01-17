@@ -28,4 +28,5 @@ urlpatterns = [
 	url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
 	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 	url(r'^newuser$', views.newuser, name="newuser"),
+	url(r'gpx/(?P<geocache_id>[0-9]+)$', views.gpx, name="gpx"),
 ]

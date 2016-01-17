@@ -2,8 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
 from .models import Geocache, Log
 from .forms import CacheForm, NewUserForm
+
+from xml.etree.ElementTree import Element, SubElement, Comment, tostring
+
+
 
 def index(request):
 	listings = Geocache.objects.all()
@@ -58,3 +63,33 @@ def newuser(request):
 
 def about(request):
 	return render(request, 'about.html', {})
+
+def gpx(request, geocache_id):
+	cache = get_object_or_404(Geocache, pk=geocache_id)
+
+	root = Element('gpx')
+	root.set('xmlns', 'http://ww.topografix.com/GPX/1/1')
+	root.set('creator', 'Wes Basinger')
+	root.set('version', '1.1')
+	root.set('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+	root.set('xmlns:xsiSchemaLocation', 'http://www.togografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd')
+	md = SubElement(root, 'metadata')
+	nm = SubElement(md, 'name')
+	nm.text = cache.title
+	ds = SubElement(md, 'description')
+	ds.text = cache.description
+	wpt = SubElement(root, 'wpt')
+	wpt.set('lat', str(cache.latitude))
+	wpt.set('lon', str(cache.longitude))
+	ele = SubElement(wpt, 'ele')
+	ele.text = '30'
+	nr = SubElement(wpt, 'name')
+	nr.text = 'Hello'
+	sy = SubElement(wpt, 'sym')
+	sy.text = 'Waypoint'
+	str_output = tostring(root)
+
+	response = HttpResponse(str_output, content_type='text/xml')
+	response['Content-Disposition'] = 'attachment; filename="%s.gpx"' % cache.title
+	
+	return response
