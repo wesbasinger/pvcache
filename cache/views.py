@@ -42,9 +42,12 @@ def new(request):
 
 def newuser(request):
 	if request.method == "POST":
-		form =NewUserForm(request.POST)
+		form = NewUserForm(request.POST)
 		if form.is_valid():
-			new_user = form.save(commit=False)
+			new_user = User.objects.create_user(
+				username=request.POST['username'],
+				password=request.POST['password']
+			)
 			new_user.save()
 			return HttpResponseRedirect('/')
 	else:
