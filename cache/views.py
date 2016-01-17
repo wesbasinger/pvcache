@@ -81,10 +81,13 @@ def gpx(request, geocache_id):
 	wpt = SubElement(root, 'wpt')
 	wpt.set('lat', str(cache.latitude))
 	wpt.set('lon', str(cache.longitude))
-	ele = SubElement(wpt, 'ele')
-	ele.text = '30'
+	bounds = SubElement(root, 'bounds')
+	bounds.set('minlat', str(cache.latitude))
+	bounds.set('minlon', str(cache.longitude))
+	bounds.set('maxlat', str(cache.latitude))
+	bounds.set('maxlon', str(cache.longitude))
 	nr = SubElement(wpt, 'name')
-	nr.text = 'Hello'
+	nr.text = "VT Cache" 
 	sy = SubElement(wpt, 'sym')
 	sy.text = 'Waypoint'
 	str_output = tostring(root)
