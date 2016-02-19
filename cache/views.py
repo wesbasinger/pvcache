@@ -50,7 +50,7 @@ def delete(request, geocache_id):
 	listing = Geocache.objects.get(pk=geocache_id)
 	listing.delete()
 	listings = Geocache.objects.all()
-	return render(request, 'index.html', {'listings' : listings})
+	return HttpResponseRedirect('/')
   
 
 def newuser(request):
