@@ -45,6 +45,14 @@ def new(request):
 
 	return render(request, 'new.html', {'form': form})
 
+@login_required
+def delete(request, geocache_id):
+	listing = Geocache.objects.get(pk=geocache_id)
+	listing.delete()
+	listings = Geocache.objects.all()
+	return render(request, 'index.html', {'listings' : listings})
+  
+
 def newuser(request):
 	if request.method == "POST":
 		form = NewUserForm(request.POST)

@@ -23,6 +23,7 @@ urlpatterns = [
     #url(r'^admin/', admin.site.urls),
 	url(r'^$', views.index, name="index"),
 	url(r'^listing/(?P<geocache_id>[0-9]+)$', views.listing, name="listing"),
+	url(r'^delete/(?P<geocache_id>[0-9]+)$', views.delete, name="delete"),
 	url(r'^new$', views.new, name="new"),
 	url(r'^about$', views.about, name="about"),
 	url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
