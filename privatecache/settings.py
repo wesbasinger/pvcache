@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vtcaching',
-		'USER': 'wes',
-		'PASSWORD': 'annie510',
+		'USER': '',
+		'PASSWORD': '',
 		'HOST': 'localhost',
 		'PORT': '',
     }
